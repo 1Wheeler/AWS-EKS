@@ -14,7 +14,7 @@ locals {
   }
 
   autoscale_tags = {
-    format("k8s.io/cluster-autoscaler/%v", var.cluster_name) = "owned"
+    format("k8s.io/cluster-autoscaler/%s", var.cluster_name) = "owned"
     "k8s.io/cluster-autoscaler/enabled"                      = "TRUE"
   }
 }
