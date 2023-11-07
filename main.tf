@@ -14,8 +14,7 @@ locals {
   }
 
   autoscale_tags = {
-    "k8s.io/cluster-autoscaler/blah" = "owned"
-    "k8s.io/cluster-autoscaler/enabled"                      = "TRUE"
+    format("%v%v-nodegroup-instance-name", local._prefixes["eks"], var.cluster_name) = "owned"
   }
 }
 
