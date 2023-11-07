@@ -14,7 +14,7 @@ locals {
   }
 
   autoscale_tags = {
-    "Name" = format("/aws/eks/%v/cluster", var.cluster_name)
+    format("/aws/eks/%v/cluster", var.cluster_name) = "Name" 
   }
 }
 
