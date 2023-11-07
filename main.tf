@@ -12,9 +12,10 @@ locals {
     "xxx:tf_module_version" = local._module_version
     "xxx:created_by"        = "terraform"
   }
-
+  # https://docs.aws.amazon.com/eks/latest/userguide/cluster-autoscaler.html
   autoscale_tags = {
-    format("/aws/eks/%v/cluster", var.cluster_name) = "Name" 
+    "k8s.io/cluster-autoscaler/${var.cluster_name}" = "owned"
+    "k8s.io/cluster-autoscaler/enabled"                      = "TRUE"
   }
 }
 
@@ -226,6 +227,7 @@ resource "aws_eks_node_group" "eks-worker-nodes" {
 locals {
   launch_template_tags = {
     "Name"                                               = format("%v%v-nodegroup-instance-name", local._prefixes["eks"], var.cluster_name)
+    format("kubernetes.io/cluster/%v", var.cluster_name) = "owned"
   }
 }
 resource "aws_launch_template" "eks-nodegroup-launch-template" {
@@ -310,4 +312,3 @@ locals {
 #     { "Name" = "vpc0-dummy" },
 #   )
 # }
-
