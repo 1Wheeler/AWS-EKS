@@ -14,7 +14,7 @@ locals {
   }
 
   autoscale_tags = {
-    format("%v%v-nodegroup-instance-name", "a", "s") = "owned"
+    format("%#v%#v-nodegroup-instance-name", "a", "s") = "owned"
   }
 }
 
