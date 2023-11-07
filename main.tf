@@ -13,8 +13,6 @@ locals {
     "xxx:created_by"        = "terraform"
   }
 
-  # https://docs.aws.amazon.com/eks/latest/userguide/cluster-autoscaler.html
-
 autoscale_tags = {
     format("k8s.io/cluster-autoscaler/%v", var.cluster_name) = "owned"
     "k8s.io/cluster-autoscaler/enabled"                      = "TRUE"
