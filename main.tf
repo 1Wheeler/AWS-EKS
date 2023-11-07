@@ -227,7 +227,6 @@ resource "aws_eks_node_group" "eks-worker-nodes" {
 locals {
   launch_template_tags = {
     "Name"                                               = format("%v%v-nodegroup-instance-name", local._prefixes["eks"], var.cluster_name)
-    format("kubernetes.io/cluster/%v", local._prefixes["eks"]) = "owned"
   }
 }
 resource "aws_launch_template" "eks-nodegroup-launch-template" {
